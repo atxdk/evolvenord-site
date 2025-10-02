@@ -59,10 +59,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
     <!-- AOS Library from CDN -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     
-    <!-- Initialize animations -->
+    <!-- Initialize animations and optimizations -->
     <script>
       import '../scripts/lenis.js'
       import '../scripts/aos.js'
+      import '../scripts/video-optimizer.js'
     </script>
   </body>
 </html>

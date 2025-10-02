@@ -83,6 +83,29 @@ header {
   isolation: isolate;
 }
 
+/* Video background optimizations */
+video[autoplay][muted] {
+  /* Ensure smooth performance */
+  will-change: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  
+  /* Prevent layout shift */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+  /* Optimize rendering */
+  image-rendering: auto;
+}
+
+/* Hide video for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  video[autoplay][muted] {
+    display: none;
+  }
+}
+
 .button--glass {
   --glass-border-width: 1px;
   --glass-radius: 4px;
