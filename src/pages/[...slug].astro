@@ -1,38 +1,50 @@
 ---
-import {getLiveStory } from '@storyblok/astro'
-import { getStory, getSiteSettings } from '../utils/api'
-import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
-import Layout from '../layouts/Layout.astro'
-import parseUrl from '../utils/parseUrl'
-import isPreview from '../utils/isPreview'
-import generateStaticPaths from '../utils/generateStaticPaths'
-import * as locales from '../locales'
+// Import our Strapi helpers, the main Layout, and our new ComponentMapper
+import { getAllPageSlugs, getPageBySlug, getSiteSettings } from '../utils/strapi.js';
+import Layout from '../layouts/Layout.astro';
+import ComponentMapper from '../components/ComponentMapper.astro';
 
+// This function runs at build time to discover all page routes from Strapi
 export async function getStaticPaths() {
-  return await generateStaticPaths()
+  return await getAllPageSlugs();
 }
 
-const params = Astro.params
+// Get the slug for the current page
+const { slug } = Astro.params;
 
-let props = isPreview() ? parseUrl(params.slug) : Astro.props
+// Fetch both the page data AND the site settings at the same time
+const [pageData, siteSettings] = await Promise.all([
+  getPageBySlug(slug),
+  getSiteSettings()
+]);
 
-const { slug, language, langSwitch } = props
-
-const siteSettings = await getSiteSettings(language)
-
-const translate = locales[language] || locales.en
-
-let story
-
-const liveStory = await getLiveStory(Astro);
-
-if (liveStory) {
-  story = liveStory;
-} else {
-  story = await getStory(slug, language)
+// Handle case where page is not found
+if (!pageData) {
+  return new Response(null, { status: 404, statusText: 'Not Found' });
 }
+
+// The actual page content is nested in the 'attributes' object in Strapi v4/v5
+const page = pageData;
+
+// Extract the array of components from our "page_builder" Dynamic Zone
+const pageBuilderComponents = page.page_builder;
 ---
 
-<Layout blok={story.content} siteSettings={siteSettings.content} langSwitch={langSwitch} language={language} translate={translate}>
-  <StoryblokComponent blok={story.content} language={language} translate={translate}  />
+<!-- Use the main Layout component to wrap our page for consistent header/footer -->
+<Layout page={page} siteSettings={siteSettings}>
+  <main>
+    {/* 
+      Check if the page_builder array exists and has components.
+      If it does, we map over each component ('blok') and render it
+      using our ComponentMapper. This is the core of our dynamic page builder.
+    */}
+    {pageBuilderComponents && pageBuilderComponents.length > 0 ? (
+      pageBuilderComponents.map(blok => <ComponentMapper blok={blok} />)
+    ) : (
+      <!-- Show a message if the page is empty in the CMS -->
+      <div class="container mx-auto py-24 text-center">
+        <p>This page has no content components yet.</p>
+      </div>
+    )}
+  </main>
 </Layout>

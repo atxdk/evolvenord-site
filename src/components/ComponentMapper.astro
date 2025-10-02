@@ -1,0 +1,35 @@
+---
+// Import all the page section components we will be mapping.
+// We are using the components from the 'storyblok' folder.
+// We will refactor them to use Strapi data one by one.
+import Hero from '../storyblok/Hero.astro';
+import FeaturesSection from '../storyblok/FeaturesSection.astro';
+// ... we will add more imports here as we build them out.
+
+// This is our mapping object.
+// The key is the Strapi component name (e.g., "shared.hero").
+// The value is the imported Astro component.
+export const components = {
+  'shared.hero': Hero,
+  'shared.features-section': FeaturesSection,
+  // ... we will add more mappings here.
+};
+
+// --- Props ---
+// This component expects a 'blok' prop, which is a single
+// component object from Strapi's Dynamic Zone.
+const { blok } = Astro.props;
+
+// Look up the appropriate Astro component in our map.
+const Component = components[blok.__component];
+---
+
+<!-- 
+  If the component is found in our map, render it and pass
+  the blok data down to it as a prop. Otherwise, render nothing.
+  This prevents errors if Strapi has a component that the
+  frontend doesn't know about yet.
+-->
+{Component && (
+  <Component blok={blok} />
+)}

@@ -1,84 +1,39 @@
 import { defineConfig } from 'astro/config'
-import tailwindcss from '@tailwindcss/vite'
-import { storyblok } from '@storyblok/astro'
-import { loadEnv } from 'vite'
+import tailwind from "@astrojs/tailwind";
+// REMOVED: import { storyblok } from '@storyblok/astro'
+// REMOVED: import { loadEnv } from 'vite'
 import mkcert from 'vite-plugin-mkcert'
-import netlify from '@astrojs/netlify'
+// REMOVED: import netlify from '@astrojs/netlify'
 
-const env = loadEnv('', process.cwd(), 'STORYBLOK')
-
-let is_preview = env.STORYBLOK_IS_PREVIEW === 'yes'
-let output
-let adapter
-
-// local dev
-if (import.meta.env.DEV) {
-  output = "server"
-  adapter = undefined
-}
-
-// local build
-else if (env.STORYBLOK_ENVIRONMENT === 'development') {
-  output = "static"
-  adapter = undefined
-  is_preview = false
-}
-
-// cloud
-else {
-  adapter = is_preview ? netlify() : undefined
-  output = is_preview ? "server" : "static"
-}
+// All the conditional logic based on Storyblok's environment has been removed.
 
 export default defineConfig({
-  output: output,
-  adapter: adapter,
+  // We are setting the output to 'static' for a fast, simple build.
+  // This is ideal for your JAMstack goal and for deploying to Coolify.
+  output: 'static',
+  adapter: undefined, // No adapter is needed for a static build.
 
-  integrations: [
-    storyblok({
-      accessToken: env.STORYBLOK_TOKEN,
-      bridge: {
-        resolveRelations: ['reports_section.reports'],
-      },
-      enableFallbackComponent: true,
-      livePreview: is_preview,
-      apiOptions: {
-        region: 'eu',
-      },
-      components: {
-        page: 'storyblok/Page',
-        button: 'storyblok/Button',
-        heading: 'storyblok/Heading',
-        partners_section: 'storyblok/PartnersSection',
-        hero: 'storyblok/Hero',
-        banner_split: 'storyblok/BannerSplit',
-        features_section: 'storyblok/FeaturesSection',
-        stats_section: 'storyblok/StatsSection',
-        reports_section: 'storyblok/ReportsSection',
-        reports_list: 'storyblok/ReportsList',
-        report: 'storyblok/Report',
-        team_section: 'storyblok/TeamSection',
-        testimonials_section: 'storyblok/TestimonialsSection',
-        advisers_section: 'storyblok/AdvisersSection',
-        banner_cta: 'storyblok/BannerCta',
-        site_settings: 'storyblok/siteSettings',
-      },
-    }),
-  ],
+  // The 'storyblok' integration has been removed from this array.
+  // For now, it's empty. We might add other integrations like 'sitemap' later.
+  integrations: [tailwind({
+    // This disables Astro's default base styles
+    applyBaseStyles: false,
+  })],
 
   image: {
+    // UPDATED: We've changed the allowed hostname to your Strapi CMS.
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**.storyblok.com',
+        hostname: 'cms.evolvenord.com',
       },
     ],
   },
 
   vite: {
+    // The tailwindcss vite plugin is removed as the Astro integration handles it.
     plugins: [
       mkcert(),
-      tailwindcss()
     ],
     server: {
       https: true,
