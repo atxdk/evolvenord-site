@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Button from '../components/ui/Button.astro'
+import StatsSection from '../components/sections/StatsSection.astro'
+
+const stats = [
+  { number: '2015', label: 'Founded', primary: true },
+  { number: '50+', label: 'Happy Clients', primary: false },
+  { number: '150+', label: 'Projects Delivered', primary: false },
+  { number: '8', label: 'Ventures Launched', primary: false },
+]
+
+const values = [
+  {
+    title: 'Results-Driven',
+    description: 'We measure success by the results we deliver for clients, not the hours we bill.',
+    icon: '🎯',
+  },
+  {
+    title: 'Transparency',
+    description: 'Clear communication, honest reporting, and no hidden surprises.',
+    icon: '💎',
+  },
+  {
+    title: 'Innovation',
+    description: 'We stay ahead of trends and continuously explore new approaches.',
+    icon: '💡',
+  },
+  {
+    title: 'Partnership',
+    description: 'Your success is our success. We are in this together for the long term.',
+    icon: '🤝',
+  },
+]
+---
+
+<BaseLayout
+  title="About Us - Evolvenord"
+  description="Learn about Evolvenord, our mission, team, and how we help businesses grow through digital marketing and venture building."
+>
+  <!-- Hero Section -->
+  <section class="pt-32 pb-16 px-6">
+    <div class="container mx-auto max-w-4xl">
+      <h1 class="text-4xl md:text-6xl font-adamina mb-6 text-center" data-aos="fade-up">
+        About Evolvenord
+      </h1>
+      <p class="text-xl opacity-75 text-center max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+        We are a Digital Marketing Agency and Venture Studio helping businesses grow and building innovative ventures that matter.
+      </p>
+    </div>
+  </section>
+
+  <!-- Our Story -->
+  <section class="py-16 px-6">
+    <div class="container mx-auto max-w-4xl">
+      <div class="prose prose-lg max-w-none">
+        <h2 class="text-3xl font-adamina mb-6" data-aos="fade-up">Our Story</h2>
+        
+        <div data-aos="fade-up" data-aos-delay="100">
+          <p class="text-lg opacity-75 mb-4">
+            Founded in 2015, Evolvenord started with a simple mission: help businesses leverage digital marketing to achieve extraordinary growth.
+          </p>
+          
+          <p class="text-lg opacity-75 mb-4">
+            What began as a small consultancy has evolved into a full-service digital marketing agency with a unique twist—we don't just consult, we build. Our venture studio allows us to practice what we preach, building and launching our own digital products.
+          </p>
+          
+          <p class="text-lg opacity-75 mb-4">
+            This dual approach makes us better marketers. The lessons we learn building our own ventures directly benefit our clients, and vice versa. We understand the challenges of growth because we face them ourselves every day.
+          </p>
+          
+          <p class="text-lg opacity-75">
+            Today, we work with clients across industries, from startups to established enterprises, helping them navigate the complex world of digital marketing and achieve measurable results.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <StatsSection
+    title="Our Journey in Numbers"
+    lead="A decade of growth, innovation, and client success."
+    stats={stats}
+  />
+
+  <!-- Our Values -->
+  <section class="py-16 px-6">
+    <div class="container mx-auto max-w-6xl">
+      <h2 class="text-3xl md:text-5xl font-adamina text-center mb-12" data-aos="fade-up">
+        Our Values
+      </h2>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        {values.map((value, index) => (
+          <div 
+            class="bg-white p-8 rounded-lg"
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
+            <div class="text-5xl mb-4">{value.icon}</div>
+            <h3 class="text-2xl font-adamina mb-3">{value.title}</h3>
+            <p class="opacity-75">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- What Makes Us Different -->
+  <section class="py-16 px-6 bg-white">
+    <div class="container mx-auto max-w-4xl">
+      <h2 class="text-3xl md:text-5xl font-adamina text-center mb-12" data-aos="fade-up">
+        What Makes Us Different
+      </h2>
+      
+      <div class="space-y-8">
+        <div data-aos="fade-up">
+          <h3 class="text-xl font-bold mb-3">🚀 We Build Our Own Ventures</h3>
+          <p class="opacity-75">
+            Unlike traditional agencies, we build and launch our own digital products. This hands-on experience makes us better at helping you build yours.
+          </p>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-xl font-bold mb-3">📊 Data-Driven Decision Making</h3>
+          <p class="opacity-75">
+            Every decision is backed by data. We measure everything, test continuously, and optimize relentlessly to improve results.
+          </p>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="200">
+          <h3 class="text-xl font-bold mb-3">🎯 Focus on ROI</h3>
+          <p class="opacity-75">
+            We don't measure success by traffic or impressions. We measure it by the revenue and growth we help you achieve.
+          </p>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="300">
+          <h3 class="text-xl font-bold mb-3">🤝 Long-Term Partnerships</h3>
+          <p class="opacity-75">
+            We're not interested in quick wins. We build long-term partnerships with clients, growing together over years, not months.
+          </p>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="400">
+          <h3 class="text-xl font-bold mb-3">🌍 Global Perspective, Local Expertise</h3>
+          <p class="opacity-75">
+            With team members across multiple countries and languages, we bring global best practices while understanding local nuances.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 px-6">
+    <div class="container mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl md:text-5xl font-adamina mb-6" data-aos="fade-up">
+        Let's Work Together
+      </h2>
+      <p class="text-xl opacity-75 mb-8" data-aos="fade-up" data-aos-delay="100">
+        Ready to grow your business? Let's discuss how we can help.
+      </p>
+      <div data-aos="fade-up" data-aos-delay="200">
+        <Button label="Get in Touch" href="/contact" variant="primary" classes="text-lg px-8 py-4" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+

@@ -45,6 +45,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
     <!-- Fonts -->
     <link rel="preload" href="/fonts/inter-v19-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/adamina-v21-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+    
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
   <body class="font-inter antialiased bg-background text-foreground">
     <Header language={language} />
@@ -52,6 +55,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site)
       <slot />
     </main>
     <Footer language={language} />
+    
+    <!-- AOS Library from CDN -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+    <!-- Initialize animations -->
+    <script>
+      import '../scripts/lenis.js'
+      import '../scripts/aos.js'
+    </script>
   </body>
 </html>
 

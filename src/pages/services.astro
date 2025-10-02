@@ -1,0 +1,208 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Button from '../components/ui/Button.astro'
+
+const services = [
+  {
+    title: 'Digital Strategy',
+    description: 'We help you define a clear digital strategy that aligns with your business objectives and drives measurable results.',
+    features: [
+      'Market research and competitive analysis',
+      'Target audience definition and persona development',
+      'Customer journey mapping',
+      'Channel strategy and selection',
+      'KPI definition and measurement framework',
+      'Implementation roadmap',
+    ],
+    icon: '🎯',
+  },
+  {
+    title: 'Performance Marketing',
+    description: 'Data-driven campaigns that maximize your ROI across all digital channels including PPC, SEO, and social media.',
+    features: [
+      'Google Ads and Microsoft Advertising',
+      'Social media advertising (Meta, LinkedIn, TikTok)',
+      'Search engine optimization (SEO)',
+      'Conversion rate optimization (CRO)',
+      'Marketing automation',
+      'Analytics and attribution modeling',
+    ],
+    icon: '📈',
+  },
+  {
+    title: 'Content Marketing',
+    description: 'Strategic content that attracts, engages, and converts your target audience while building brand authority.',
+    features: [
+      'Content strategy development',
+      'Blog writing and optimization',
+      'Ebooks and whitepapers',
+      'Video content production',
+      'Email marketing campaigns',
+      'Content distribution and promotion',
+    ],
+    icon: '✍️',
+  },
+  {
+    title: 'SEO & Local SEO',
+    description: 'Improve your search visibility and drive qualified organic traffic to your website through proven SEO tactics.',
+    features: [
+      'Technical SEO audits and fixes',
+      'On-page optimization',
+      'Link building and outreach',
+      'Local SEO and Google Business Profile optimization',
+      'Content optimization',
+      'SEO reporting and analysis',
+    ],
+    icon: '🔍',
+  },
+  {
+    title: 'Social Media Management',
+    description: 'Build and engage your community across social platforms with strategic content and authentic interactions.',
+    features: [
+      'Social media strategy development',
+      'Content creation and scheduling',
+      'Community management',
+      'Influencer partnerships',
+      'Social listening and reputation management',
+      'Performance reporting',
+    ],
+    icon: '📱',
+  },
+  {
+    title: 'Marketing Analytics',
+    description: 'Turn data into insights and insights into action with comprehensive marketing analytics and reporting.',
+    features: [
+      'Google Analytics 4 setup and configuration',
+      'Custom dashboard creation',
+      'Multi-touch attribution modeling',
+      'Conversion tracking implementation',
+      'Regular performance reporting',
+      'Data-driven optimization recommendations',
+    ],
+    icon: '📊',
+  },
+]
+---
+
+<BaseLayout
+  title="Our Services - Evolvenord"
+  description="Comprehensive digital marketing services to help your business grow. From strategy to execution, we've got you covered."
+>
+  <!-- Hero Section -->
+  <section class="pt-32 pb-16 px-6">
+    <div class="container mx-auto max-w-4xl text-center">
+      <h1 class="text-4xl md:text-6xl font-adamina mb-6" data-aos="fade-up">
+        Digital Marketing Services
+      </h1>
+      <p class="text-xl opacity-75 mb-8" data-aos="fade-up" data-aos-delay="100">
+        From strategy to execution, we provide end-to-end digital marketing services that drive real business results.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="py-16 px-6">
+    <div class="container mx-auto max-w-7xl">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((service, index) => (
+          <article
+            class="bg-white p-8 rounded-lg shadow-sm hover:shadow-lg transition-shadow"
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
+            <div class="text-5xl mb-4">{service.icon}</div>
+            <h2 class="text-2xl font-adamina mb-4">{service.title}</h2>
+            <p class="opacity-75 mb-6">{service.description}</p>
+            
+            <h3 class="font-medium mb-3">What's Included:</h3>
+            <ul class="space-y-2 mb-6">
+              {service.features.map((feature) => (
+                <li class="flex items-start gap-2">
+                  <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="text-sm">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How We Work -->
+  <section class="py-16 px-6 bg-white">
+    <div class="container mx-auto max-w-4xl">
+      <h2 class="text-3xl md:text-5xl font-adamina text-center mb-12" data-aos="fade-up">
+        How We Work
+      </h2>
+      
+      <div class="space-y-8">
+        <div class="flex gap-6" data-aos="fade-up">
+          <div class="flex-shrink-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl">
+            1
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Discovery & Strategy</h3>
+            <p class="opacity-75">
+              We start by understanding your business, goals, and challenges. Through workshops and research, we develop a tailored strategy.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="flex-shrink-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl">
+            2
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Planning & Setup</h3>
+            <p class="opacity-75">
+              We create detailed plans, set up tracking and tools, and prepare everything needed for successful execution.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="flex-shrink-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl">
+            3
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Execution & Optimization</h3>
+            <p class="opacity-75">
+              We launch campaigns, create content, and execute the strategy while continuously monitoring and optimizing for better results.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="flex-shrink-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl">
+            4
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-2">Reporting & Growth</h3>
+            <p class="opacity-75">
+              Regular reporting keeps you informed, and we use insights to refine strategies and scale what works.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 px-6">
+    <div class="container mx-auto max-w-4xl text-center">
+      <h2 class="text-3xl md:text-5xl font-adamina mb-6" data-aos="fade-up">
+        Ready to Grow Your Business?
+      </h2>
+      <p class="text-xl opacity-75 mb-8" data-aos="fade-up" data-aos-delay="100">
+        Let's discuss how our services can help you achieve your goals.
+      </p>
+      <div data-aos="fade-up" data-aos-delay="200">
+        <Button label="Get in Touch" href="/contact" variant="primary" classes="text-lg px-8 py-4" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
