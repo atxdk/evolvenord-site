@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Hero from '../components/sections/Hero.astro'
+import PartnersSection from '../components/sections/PartnersSection.astro'
+import FeaturesSection from '../components/sections/FeaturesSection.astro'
+import StatsSection from '../components/sections/StatsSection.astro'
+import TestimonialsSection from '../components/sections/TestimonialsSection.astro'
+import BannerCta from '../components/sections/BannerCta.astro'
+
+const partners = [
+  { name: 'Partner 1', logo: '/partners/partner1.svg', link: '#' },
+  { name: 'Partner 2', logo: '/partners/partner2.svg', link: '#' },
+  { name: 'Partner 3', logo: '/partners/partner3.svg', link: '#' },
+  { name: 'Partner 4', logo: '/partners/partner4.svg', link: '#' },
+  { name: 'Partner 5', logo: '/partners/partner5.svg', link: '#' },
+]
+
+const features = [
+  {
+    title: 'Digital Strategy',
+    description: 'We help you define a clear digital strategy that aligns with your business goals and drives measurable results.',
+    image: '/images/feature-strategy.jpg',
+    imageAlt: 'Digital Strategy',
+  },
+  {
+    title: 'Performance Marketing',
+    description: 'Data-driven campaigns that maximize your ROI across all digital channels including PPC, SEO, and social media.',
+    image: '/images/feature-marketing.jpg',
+    imageAlt: 'Performance Marketing',
+  },
+  {
+    title: 'Venture Building',
+    description: 'We build and launch innovative digital products from concept to market, leveraging our expertise and resources.',
+    image: '/images/feature-ventures.jpg',
+    imageAlt: 'Venture Building',
+  },
+]
+
+const stats = [
+  { number: '150+', label: 'Projects Delivered', primary: true },
+  { number: '50+', label: 'Happy Clients', primary: false },
+  { number: '€10M+', label: 'Revenue Generated', primary: false },
+  { number: '8', label: 'Ventures Launched', primary: false },
+]
+
+const testimonials = [
+  {
+    quote: 'Working with Evolvenord transformed our digital presence. Their strategic approach and execution excellence delivered results beyond our expectations.',
+    authorName: 'Sarah Johnson',
+    authorTitle: 'CEO, TechCorp',
+  },
+]
+---
+
+<BaseLayout
+  title="Evolvenord - Digital Marketing Agency & Venture Studio"
+  description="We help businesses grow through digital marketing and build innovative ventures. Expert team delivering measurable results across digital strategy, performance marketing, and venture building."
+>
+  <Hero
+    headline="Transform Your Digital Future"
+    lead="We're a Digital Marketing Agency and Venture Studio helping businesses grow and building innovative ventures that matter."
+    image="/images/hero-bg.jpg"
+    imageAlt="Evolvenord Team"
+    buttonLabel="Start Your Journey"
+    buttonHref="/contact"
+    showPartners={true}
+  >
+    <PartnersSection slot="partners" title="Trusted by" partners={partners} />
+  </Hero>
+
+  <FeaturesSection title="What We Do" features={features} />
+
+  <StatsSection
+    title="Driving Results That Matter"
+    lead="Our track record speaks for itself. Here's what we've achieved together with our clients."
+    stats={stats}
+  />
+
+  <TestimonialsSection
+    image="/images/testimonial.jpg"
+    imageAlt="Happy Client"
+    heading="Client Success Stories"
+    testimonials={testimonials}
+  />
+
+  <BannerCta
+    headline="Ready to Grow Your Business?"
+    heading="Let's Talk"
+    buttonLabel="Get in Touch"
+    buttonHref="/contact"
+    backgroundImage="/images/cta-bg.jpg"
+  />
+</BaseLayout>
+

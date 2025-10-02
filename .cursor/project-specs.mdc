@@ -1,0 +1,188 @@
+---
+alwaysApply: true
+---
+
+# Project Specs: evolvenord.com
+
+**AI Agent Directive:** This document is your single source of truth. Every coding task must align with these specifications. You are expected to modify this file to keep it current with all project design decisions. Formulations must be kept as concise as possible while conveying all relevant information.
+
+## Project Description
+
+A high-performance corporate website for evolvenord.com, a Digital Marketing Agency and Venture Studio. The primary goals are to present agency services to an international audience, showcase venture projects, and publish blog content using local MDX files. The architecture prioritizes performance (Astro islands, minimal JS), strong SEO, and modern motion design.
+
+## Features & Technologies
+
+**Astro:** Static Site Generator with JAMstack architecture and Incremental Site Rendering.
+
+**Build Tool:** Vite (handles dev server, bundling, tree-shaking, asset optimization).
+
+**Architecture:** File-based routing and Astro Islands for partial hydration.
+
+**Styling:**
+- **Tailwind CSS:** Utility-first CSS framework.
+- **DaisyUI:** Tailwind CSS component library for pre-designed UI elements.
+
+**Animations & Motion:**
+- **AOS (Animate On Scroll):** For simple on-scroll reveal animations.
+- **Motion One:** For clean, programmatic animations (client-side only).
+- **GSAP (GreenSock Animation Platform):** For complex, high-performance timelines and scroll-triggered effects.
+- **Lenis:** For a consistent and smooth scrolling experience.
+- **Swiper:** For touch-friendly sliders and carousels.
+- **Lottie-web:** For rendering Adobe After Effects animations from JSON files.
+
+**Interactivity:**
+- **Alpine.js:** A minimal JS framework for lightweight interactivity (menus, modals, tabs).
+
+**Content & Data:**
+- **MDX:** All content (blog, case studies) managed via Astro Content Collections.
+- **Icons:** Lucide or Heroicons.
+- **Images:** Astro's `<Image />` component; assets compressed with Squoosh before commit.
+
+**Analytics & SEO:**
+- **Google Analytics 4:** Implemented via gtag snippet.
+- **Astro SEO:** Official integrations for sitemap and robots.txt.
+- **Meta Tags:** OpenGraph, Twitter cards, and JSON-LD schemas per content type.
+
+**Infrastructure & Deployment:**
+- **Hosting:** Self-hosted server managed by Coolify where the site will be deployed with Nixpacks as the Build Pack which will auto-detect the project’s language, dependencies, and runtime environment to generate an optimized build and launch configuration automatically.
+- **Access:** Secured via Cloudflare Tunnel.
+- **CDN:** Cloudflare CDN for global asset delivery.
+- **Deployment:** Git-based workflow using GitHub Actions to trigger builds and restarts in Coolify on pushes to the main branch. The integration between Coolify and Github is handled externally, don't worry about it.
+
+**Removed from Template:** Storyblok, Netlify, and PostHog have been replaced by the MDX, Coolify, and Cloudflare stack.
+
+## Folder Structure
+
+- `src/pages/`: Top-level Astro routes (index.astro, services/, case-studies/, etc.).
+- `src/layouts/`: Shared page layouts (e.g., BaseLayout.astro, PostLayout.astro).
+- `src/components/`: Reusable UI components.
+  - `ui/`: Generic elements (buttons, cards, modals).
+  - `sections/`: Large page sections (hero, features, testimonials).
+  - `blog/`: Blog-specific components (post previews, tag lists).
+  - `media/`: Image wrappers, Lottie players, Swiper components.
+  - `motion/`: Reusable animation helpers or wrappers (GSAP/Motion One).
+- `src/styles/`: Global styles and Tailwind entrypoint (global.css).
+- `src/content/`: Astro Content Collections (MDX Source).
+  - `config.ts`: Zod schemas for all collections.
+  - `blog/`: Contains all post-slug.mdx files.
+  - `case-studies/`: Contains all project-slug.mdx files.
+  - `ventures/`: Contains all venture-slug.mdx files.
+- `src/lib/`: Utility functions (SEO helpers, GA integration, etc.).
+- `src/scripts/`: Client-side scripts for initializing libraries (Lenis, AOS, etc.).
+- `public/`: Static assets (favicons, robots.txt, images).
+- `.github/workflows/`: GitHub Actions workflow for deployment (deploy.yml).
+- `Dockerfile`: Configuration for building the application container.
+
+## Conventions
+
+### Content & MDX
+
+Astro Content Collections are the sole source for dynamic content, with schemas defined in `src/content/config.ts`.
+
+**Filenames:** Must be kebab-case. Slugs are derived from filenames.
+
+**Frontmatter Schemas:**
+
+**Blog Posts** (`src/content/blog/`)
+
+```yaml
+---
+title: 'How to Build Performant Websites with Astro'
+description: 'A deep dive into Astro features that enable top-tier web performance.'
+publishDate: '2025-10-26T09:00:00Z'
+updatedDate: '2025-10-27T11:30:00Z'
+tags: ['astro', 'performance', 'webdev']
+coverImage: '/images/blog/astro-performance.jpg'
+draft: false
+---
+```
+
+**Case Studies** (`src/content/case-studies/`)
+
+```yaml
+---
+title: 'Global E-commerce Launch for BrandX'
+description: 'How we scaled BrandX from a local store to an international success.'
+publishDate: '2025-09-15T09:00:00Z'
+client: 'BrandX'
+industry: 'E-commerce'
+services: ['Digital Strategy', 'PPC', 'SEO']
+results: '300% increase in revenue over 6 months'
+coverImage: '/images/case-studies/brandx.jpg'
+draft: false
+---
+```
+
+**Ventures** (`src/content/ventures/`)
+
+```yaml
+---
+title: 'SaaSify - The Ultimate Boilerplate'
+description: 'A SaaS boilerplate to launch new products in record time.'
+publishDate: '2025-08-01T09:00:00Z'
+status: 'active' # active | beta | sunset
+website: 'https://saasify.com'
+category: 'SaaS'
+stack: ['Astro', 'Node.js', 'PostgreSQL']
+coverImage: '/images/ventures/saasify-logo.png'
+draft: false
+---
+```
+
+### Routing & Structure
+
+- URLs must be clean and persistent: `/services`, `/case-studies/:slug`, `/ventures/:slug`, `/blog/:slug`.
+- Use layouts for consistent shells (header, footer, SEO).
+
+### Styling
+
+- **Utility-First:** Always prefer Tailwind utility classes over custom CSS.
+- **Components:** Use DaisyUI for base components. Customize tokens in `tailwind.config.mjs` instead of overriding styles.
+
+### Motion & Interactivity
+
+**Minimal JS First:** Use Astro Islands to hydrate components only when strictly necessary (`client:visible` is the preferred default).
+
+**Hierarchy of Tools:**
+- **AOS:** Use for simple "fire-and-forget" reveal effects on scroll.
+- **Alpine.js:** Use for component-level state (dropdowns, modals, tabs).
+- **Motion One:** The default choice for custom programmatic animations that are not tied to a complex scroll timeline.
+- **GSAP:** Reserve for high-performance, complex sequences, especially those synchronized with the scrollbar via ScrollTrigger.
+
+**Scrolling:** Lenis must be used to provide a unified smooth scroll experience.
+
+### SEO & Accessibility
+
+- **Semantic HTML:** Use appropriate tags (`<main>`, `<nav>`, `<article>`) and provide alt text for all images.
+- **Metadata:** Every page must have a unique title and description, passed to a BaseLayout.
+- **Keyboard Navigation:** All interactive elements must be fully accessible and have visible focus states.
+
+## Migration Status
+
+✅ **COMPLETED** - Migration from Storyblok to Astro Content Collections finished on October 2, 2025
+
+All migration tasks have been completed:
+1. ✅ **Removed Dependencies:** Uninstalled Storyblok, Netlify, and PostHog packages
+2. ✅ **Cleaned Codebase:** Purged all Storyblok-related environment variables, API calls, and components
+3. ✅ **Established Content Collections:** Defined schemas in `src/content/config.ts` with blog, case-studies, and ventures collections
+4. ✅ **Converted Content:** Completely converted codebase to use MDX for content, removed all Storyblok dependencies
+
+## Open Questions / TODOs
+
+1. **Languages:** Keep multilingual routing from the template?  
+   **Decision:** Yes, start with English (en), Danish and Japanese only for launch.
+
+2. **Taxonomy:** Confirm blog taxonomies.  
+   **Decision:** Use tags only for now.
+
+3. **Design Tokens:** Choose a DaisyUI theme or define a custom theme.  
+   **Decision:** TBD.
+
+4. **Consent:** Add a cookie/consent banner for GA4?  
+   **Decision:** TBD
+
+5. **Search:** Add client-side search (e.g., Pagefind)?  
+   **Decision:** Defer for a post-launch update.
+
+6. **TypeScript:** Keep project as JS-only or enable TS?  
+   **Decision:** Use JavaScript with JSDoc for type-hinting. Re-evaluate if complexity increases.

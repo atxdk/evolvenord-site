@@ -1,8 +1,10 @@
 ---
-import { getTransLink } from '../utils/i18n'
-import { getHref } from '../utils/getHref'
+import { getTransLink, getTranslations } from '../lib/i18n'
+import { siteConfig } from '../lib/siteConfig'
 import LanguageSwitcher from './LanguageSwitcher.astro'
-const { language, translate, langSwitch, siteSettings } = Astro.props
+
+const { language = 'en' } = Astro.props
+const translate = getTranslations(language)
 ---
 
 <header class="group absolute top-0 right-0 left-0 border-b border-border z-50" id="header">
@@ -10,29 +12,27 @@ const { language, translate, langSwitch, siteSettings } = Astro.props
     <!-- Logo -->
     <div class="flex items-center gap-1 z-50">
       <a href={getTransLink(language, `/`)}>
-        <img src={siteSettings.logo.filename} alt={siteSettings.logo.alt} />
+        <img src={siteConfig.logo} alt={siteConfig.logoAlt} />
       </a>
     </div>
 
     <!-- Navigation -->
     <ul class="fixed inset-0 flex flex-col items-center justify-center gap-8 bg-primary text-white text-2xl transform transition-transform duration-300 md:static md:flex-row md:bg-transparent md:text-[0.81rem] md:gap-0 md:translate-x-0 translate-x-full group-[.is-open]:translate-x-0">
-      {siteSettings.navigation.length &&
-        siteSettings.navigation.map((navItem) => (
-          <li>
-            <a
-              href={getHref(navItem.url)}
-              class="block px-4 py-2 md:px-4 md:py-2 capitalize hover:opacity-80"
-            >
-              {navItem.label}
-            </a>
-          </li>
-        ))
-      }
+      {siteConfig.navigation.map((navItem) => (
+        <li>
+          <a
+            href={getTransLink(language, navItem.url)}
+            class="block px-4 py-2 md:px-4 md:py-2 capitalize hover:opacity-80"
+          >
+            {navItem.label}
+          </a>
+        </li>
+      ))}
 
       <!-- Mobile CTA at bottom -->
       <li>
         <a
-          href={getTransLink(language, ``)}
+          href={getTransLink(language, `/contact`)}
           class="mt-8 button--glass text-white px-6 py-3 text-lg bg-black/20 backdrop-blur-sm md:hidden"
         >
           {translate.becomeMember}
@@ -42,9 +42,9 @@ const { language, translate, langSwitch, siteSettings } = Astro.props
 
     <!-- Desktop right side -->
     <div class="flex items-center gap-4 md:justify-self-end">
-      <LanguageSwitcher langSwitch={langSwitch} language={language} />
+      <LanguageSwitcher language={language} />
       <a
-        href={getTransLink(language, ``)}
+        href={getTransLink(language, `/contact`)}
         class="button--glass hidden md:block text-white px-3 py-1.5 text-sm bg-black/20 backdrop-blur-sm"
       >
         {translate.becomeMember}

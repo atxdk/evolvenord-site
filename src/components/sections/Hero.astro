@@ -1,0 +1,56 @@
+---
+import Button from '../ui/Button.astro'
+
+const { headline, lead, image, imageAlt, buttonLabel, buttonHref, showPartners = false } = Astro.props
+---
+
+<section class="group">
+  <div class="relative min-h-[82vh] flex items-end pt-40 before:absolute before:inset-0 before:bg-black/55 before:mix-blend-multiply before:z-10">
+    <picture class="absolute z-0 w-full h-full object-cover object-top">
+      <source
+        srcset={`${image}?w=640&h=685&fit=crop`}
+        media="(max-width: 640px)"
+      />
+      <source
+        srcset={`${image}?w=1024&h=685&fit=crop`}
+        media="(max-width: 1024px)"
+      />
+      <source
+        srcset={`${image}?w=1440&h=685&fit=crop`}
+        media="(max-width: 1440px)"
+      />
+      <img
+        src={`${image}?w=1440&h=685&fit=crop`}
+        alt={imageAlt}
+        class="absolute z-0 w-full h-full object-cover object-top"
+      />
+    </picture>
+
+    <div class="relative z-20 w-full pt-10">
+      <div class="max-w-[624px] mx-auto mb-28 px-6 flex flex-col gap-y-8 justify-center items-center">
+        <div class="max-w-[624px] text-center">
+          <h1 class="text-white text-3xl md:text-5xl leading-[110%] -tracking-[1.92px] font-adamina mb-4">
+            {headline}
+          </h1>
+
+          {lead && (
+            <p class="text-white leading-[150%] -tracking-[0.32px]">
+              {lead}
+            </p>
+          )}
+        </div>
+
+        {buttonLabel && buttonHref && (
+          <Button label={buttonLabel} href={buttonHref} variant="primary" classes="cta-button" />
+        )}
+      </div>
+
+      {showPartners && (
+        <div class="max-w-[1016px] mx-auto px-6">
+          <slot name="partners" />
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+

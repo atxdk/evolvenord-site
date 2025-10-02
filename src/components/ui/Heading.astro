@@ -1,0 +1,14 @@
+---
+const { text, level = 2, classes = '' } = Astro.props
+
+const Tag = `h${level}`
+const baseStyles = 'font-adamina'
+---
+
+{Tag === 'h1' && <h1 class={`${baseStyles} ${classes}`}>{text}</h1>}
+{Tag === 'h2' && <h2 class={`${baseStyles} ${classes}`}>{text}</h2>}
+{Tag === 'h3' && <h3 class={`${baseStyles} ${classes}`}>{text}</h3>}
+{Tag === 'h4' && <h4 class={`${baseStyles} ${classes}`}>{text}</h4>}
+{Tag === 'h5' && <h5 class={`${baseStyles} ${classes}`}>{text}</h5>}
+{Tag === 'h6' && <h6 class={`${baseStyles} ${classes}`}>{text}</h6>}
+

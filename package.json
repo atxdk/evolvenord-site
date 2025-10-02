@@ -1,7 +1,7 @@
 {
-  "name": "astro-storyblok-finance-starter",
+  "name": "evolvenord-site",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -9,19 +9,20 @@
     "preview": "astro preview",
     "astro": "astro"
   },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.6",
+    "@astrojs/sitemap": "^3.5.0",
+    "astro": "5.12.9",
+    "daisyui": "^4.12.14",
+    "lenis": "^1.1.19",
+    "lottie-web": "^5.12.2",
+    "motion": "^11.14.3",
+    "swiper": "^11.1.15"
+  },
   "devDependencies": {
-    "@storyblok/astro": "^7.2.7",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.12",
-    "@vitejs/plugin-basic-ssl": "^1.1.0",
-    "astro": "5.12.9",
-    "axios": "^1.11.0",
     "tailwindcss": "^4.1.12",
-    "vite": "^5.2.11",
-    "vite-plugin-mkcert": "^1.17.8",
-    "@astrojs/netlify": "^6.5.9",
-    "postcss-import": "^16.1.1",
-    "@netlify/dev": "^4.5.9",
-    "@netlify/vite-plugin": "^2.5.9"
+    "vite": "^5.2.11"
   }
 }

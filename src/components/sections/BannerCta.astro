@@ -1,0 +1,25 @@
+---
+import Button from '../ui/Button.astro'
+import Heading from '../ui/Heading.astro'
+
+const { headline, heading, buttonLabel, buttonHref, backgroundImage } = Astro.props
+---
+
+<section
+  class="bg-no-repeat bg-cover bg-center"
+  style={backgroundImage ? `background-image: url('${backgroundImage}')` : ''}
+>
+  <div class="container mx-auto flex flex-col justify-between items-start min-h-[80vh] py-16 px-6">
+    {heading && <Heading text={heading} level={2} />}
+
+    <div class="max-w-[474px]">
+      <h2 class="text-white text-3xl md:text-5xl leading-[120%] font-adamina mb-10">
+        {headline}
+      </h2>
+      {buttonLabel && buttonHref && (
+        <Button label={buttonLabel} href={buttonHref} variant="primary" />
+      )}
+    </div>
+  </div>
+</section>
+

@@ -1,86 +1,195 @@
-# Financial Starter: Multilingual Website Template
+# Evolvenord - Digital Marketing Agency & Venture Studio
 
-![Financial Template Preview](https://a.storyblok.com/f/286134095425736/1920x1080/8a2b82127e/template-image.png)
+A high-performance corporate website built with Astro, showcasing digital marketing services and venture projects.
 
-A high-performance website starter template built for financial teams to launch new brands, products, or campaigns quickly and efficiently.
-
-This template is powered by a modern, headless stack: Astro, Storyblok, Netlify, and PostHog. Together, they provide a flexible, scalable solution with intuitive content management and powerful marketing features like A/B testing.
-
-## Demo
-- ✨ [Live Demo](https://astro-storyblok-finance-starter.netlify.app/)
-- 💨 [PageSpeed Insights Report](https://pagespeed.web.dev/analysis/https-astro-storyblok-template-netlify-app/04ge88qxbi?form_factor=desktop)
-- 🍿 [Watch Demo on YouTube](https://www.youtube.com/watch?v=2hPhwubis7Q)
-- 🆎 [A/B testing with PostHog](https://posthog-finance-starter.netlify.app/)
-  - [Check out its branch](https://github.com/bejamas/astro-storyblok-finance-starter/tree/with-posthog-ab-testing)
-
-## Tech Stack
-- Astro
-- Storyblok
-- Netlify
-- PostHog
-- Tailwind v4
-
-## Features
-- ✅ Modular Content Model – Hero, features, stats, testimonials, and more
-- ✅ Financial Reports – Built-in report content type + report list page
-- ✅ Multilingual by Default – Easy language switching with optional AI translation
-- ✅ Visual Editing – Storyblok’s live preview & block-based approach
-- ✅ SEO Ready – Metadata fields on every page
-- ✅ Optimized Performance – Static output, responsive images, Core Web Vitals ready
-- ✅ A/B Testing – Integrated with PostHog for experiments
-
-
-## Quick Start
-1. Create a Storyblok account and a new Space
-2. Clone Storyblok Space (using the button below)
-3. Fork this repo
-4. Create your project on Netlify
-5. Set up environment variables (see below)
-6. Deploy!
-
-[![Clone Storyblok Space](https://a.storyblok.com/f/286134095425736/208x35/7a54d39bad/clone-button.svg)](https://storyblok-space-cloner.netlify.app/)
-
-## Local Setup
+## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js
-- Bun
 
-### Getting Started
+- [Bun](https://bun.sh/) (recommended) or Node.js 18+
+- Git
+
+### Installation
+
 ```bash
+# Clone the repository
+git clone <repository-url>
+cd evolvenord-site
+
 # Install dependencies
 bun install
 
-# Set up environment variables
-cp .env.example .env
+# Start development server
+bun run dev
 ```
 
-### Environment Variables
-```bash
-STORYBLOK_TOKEN=        # Storyblok API token (Project Settings > Access token)
-STORYBLOK_IS_PREVIEW=   # "yes" for preview mode
-STORYBLOK_ENVIRONMENT=  # set to development on your local machine
-STORYBLOK_DEFAULT_LANG= # Default site language code, like en or es
-PUBLIC_POSTHOG_TOKEN=   # PostHog API key (Project Settings > Project ID)
-```
+The site will be available at `http://localhost:4321`
 
-## Available Scripts
-```bash
-# Run development server
-bun dev
+### Build for Production
 
-# Build for production
+```bash
+# Build the site
 bun run build
 
-# Preview production build
+# Preview the production build
 bun run preview
 ```
 
-## Contributing
-Contributions are welcome!
+## 📁 Project Structure
 
-## 📸 Screenshots
-![Financial Template Preview](https://a.storyblok.com/f/286134095425736/3840x2160/0da3abc8e2/2.png)
-![Financial Template Preview](https://a.storyblok.com/f/286134095425736/3840x2160/70e9404911/4.png)
-![Financial Template Preview](https://a.storyblok.com/f/286134095425736/3840x2160/9913515548/5.png)
-![Financial Template Preview](https://a.storyblok.com/f/286134095425736/3840x2160/10957f2691/3.png)
+```
+/
+├── public/               # Static assets (fonts, images, favicon)
+├── src/
+│   ├── components/
+│   │   ├── ui/          # Reusable UI components (Button, Heading)
+│   │   └── sections/    # Page sections (Hero, Features, etc.)
+│   ├── content/         # MDX content collections
+│   │   ├── blog/        # Blog posts
+│   │   ├── case-studies/# Case studies
+│   │   └── ventures/    # Venture projects
+│   │   └── config.ts    # Content collection schemas
+│   ├── layouts/         # Page layouts
+│   │   └── BaseLayout.astro
+│   ├── lib/             # Utility functions
+│   │   ├── i18n.js      # Internationalization
+│   │   └── siteConfig.js# Site configuration
+│   ├── locales/         # Translation files
+│   ├── pages/           # File-based routing
+│   │   ├── index.astro
+│   │   ├── blog/
+│   │   ├── case-studies/
+│   │   └── ventures/
+│   └── styles/          # Global styles
+│       └── global.css
+├── astro.config.mjs     # Astro configuration
+├── package.json
+└── tsconfig.json
+```
+
+## 🎨 Tech Stack
+
+- **Framework**: [Astro](https://astro.build/) 5.12.9
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) v4 + [DaisyUI](https://daisyui.com/)
+- **Content**: MDX with Astro Content Collections
+- **Animations**: Motion One, Lottie, Lenis, Swiper (configured, ready to use)
+- **Package Manager**: Bun
+
+## 📝 Content Management
+
+Content is managed through MDX files in the `src/content/` directory.
+
+### Adding a Blog Post
+
+Create a new `.mdx` file in `src/content/blog/`:
+
+```mdx
+---
+title: 'Your Post Title'
+description: 'Brief description'
+publishDate: '2025-01-15T09:00:00Z'
+tags: ['tag1', 'tag2']
+coverImage: '/images/blog/your-image.jpg'
+draft: false
+---
+
+Your content here in Markdown/MDX format...
+```
+
+### Adding a Case Study
+
+Create a new `.mdx` file in `src/content/case-studies/`:
+
+```mdx
+---
+title: 'Project Title'
+description: 'Project description'
+publishDate: '2024-09-15T09:00:00Z'
+client: 'Client Name'
+industry: 'Industry'
+services: ['Service 1', 'Service 2']
+results: 'Key results achieved'
+coverImage: '/images/case-studies/project.jpg'
+draft: false
+---
+
+Your case study content...
+```
+
+### Adding a Venture
+
+Create a new `.mdx` file in `src/content/ventures/`:
+
+```mdx
+---
+title: 'Venture Name'
+description: 'Venture description'
+publishDate: '2024-08-01T09:00:00Z'
+status: 'active' # active | beta | sunset
+website: 'https://venture.com'
+category: 'SaaS'
+stack: ['Tech 1', 'Tech 2']
+coverImage: '/images/ventures/logo.jpg'
+draft: false
+---
+
+Your venture details...
+```
+
+## 🌐 Internationalization
+
+The site supports multiple languages (English, Danish, Japanese). Translations are managed in `src/locales/`.
+
+- Default language: English (`en`)
+- Add translations in respective JSON files
+- Update `src/lib/i18n.js` for language configuration
+
+## 🎨 Customization
+
+### Site Configuration
+
+Edit `src/lib/siteConfig.js` to update:
+- Company information
+- Navigation menu
+- Contact details
+
+### Styling
+
+- Global styles: `src/styles/global.css`
+- Theme variables defined in `@theme` block
+- Tailwind CSS v4 with CSS-based configuration
+
+## 📦 Deployment
+
+The project is configured for deployment with Coolify using Nixpacks.
+
+### Build Command
+```bash
+bun run build
+```
+
+### Output Directory
+```
+dist/
+```
+
+## 🔧 Development
+
+### Available Scripts
+
+- `bun run dev` - Start development server
+- `bun run build` - Build for production
+- `bun run preview` - Preview production build
+- `bun run astro` - Run Astro CLI commands
+
+## 📄 License
+
+© 2025 Evolvenord. All rights reserved.
+
+## 🤝 Contributing
+
+This is a private project. For any questions or suggestions, please contact the development team.
+
+---
+
+Built with ❤️ using [Astro](https://astro.build/)
