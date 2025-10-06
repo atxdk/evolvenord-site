@@ -2,17 +2,18 @@
 const { title, partners } = Astro.props
 ---
 
-<div class="flex flex-col md:flex-row gap-8 items-center justify-between w-full py-16">
-  {title && <h2 class="text-white shrink-0">{title}</h2>}
+<div class="partners-section flex flex-col md:flex-row gap-8 items-center justify-between w-full py-16">
+  {title && <h2 class="text-white font-bold shrink-0">{title}</h2>}
 
-  <ul class="grid grid-cols-2 sm:grid-cols-5 gap-x-5 gap-y-10">
+  <ul class="grid grid-cols-2 sm:grid-cols-4 gap-x-16 gap-y-10">
     {partners && partners.map((partner) => (
-      <li>
-        <a href={partner.link || '#'}>
+      <li class="flex justify-center">
+        <a href={partner.link || '#'} aria-label={partner.name || 'Partner'}>
           <img
             src={partner.logo || '/assets/partner-placeholder.svg'}
             alt={partner.name || 'Partner'}
-            class="h-[24px] opacity-65"
+            class="partner-logo h-[72px]"
+            loading="lazy"
           />
         </a>
       </li>
@@ -20,3 +21,22 @@ const { title, partners } = Astro.props
   </ul>
 </div>
 
+<style>
+  /* scoped to this component */
+  .partners-section .partner-logo {
+    filter: grayscale(1) brightness(0) invert(1); /* makes everything white */
+    opacity: 0.8;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* optional hover: restore color for fun */
+  .partners-section .partner-logo:hover {
+    filter: none;
+    opacity: 1;
+  }
+
+  .partners-section .partner-logo {
+    filter: grayscale(1);
+    opacity: 0.8;
+  }
+</style>

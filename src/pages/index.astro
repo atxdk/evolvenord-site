@@ -8,11 +8,10 @@ import TestimonialsSection from '../components/sections/TestimonialsSection.astr
 import BannerCta from '../components/sections/BannerCta.astro'
 
 const partners = [
-  { name: 'Partner 1', logo: '/partners/partner1.svg', link: '#' },
-  { name: 'Partner 2', logo: '/partners/partner2.svg', link: '#' },
-  { name: 'Partner 3', logo: '/partners/partner3.svg', link: '#' },
-  { name: 'Partner 4', logo: '/partners/partner4.svg', link: '#' },
-  { name: 'Partner 5', logo: '/partners/partner5.svg', link: '#' },
+  { name: 'Lego', logo: 'public/images/lego_logo.svg', link: '#' },
+  { name: 'Universal Robots', logo: 'public/images/universal_robots_logo.svg', link: '#' },
+  { name: 'Unicontrol', logo: 'public/images/unicontrol_logo.svg', link: '#' },
+  { name: 'AIESEC', logo: 'public/images/aiesec_logo.svg', link: '#' }
 ]
 
 const features = [
@@ -57,8 +56,8 @@ const testimonials = [
   description="We help businesses grow through digital marketing and build innovative ventures. Expert team delivering measurable results across digital strategy, performance marketing, and venture building."
 >
   <Hero
-    headline="Transform Your Digital Future"
-    lead="We're a Digital Marketing Agency and Venture Studio helping businesses grow and building innovative ventures that matter."
+    headline="Transforming Europe's Digital Landscape"
+    lead="We're a Digital Marketing Agency and Venture Studio helping businesses grow and building innovative ventures that matter"
     videoWebm="/videos/hero-background.webm"
     videoMp4="/videos/hero-background.mp4"
     videoPoster="/images/hero-poster.jpg"
@@ -68,7 +67,7 @@ const testimonials = [
     buttonHref="/contact"
     showPartners={true}
   >
-    <PartnersSection slot="partners" title="Trusted by" partners={partners} />
+    <PartnersSection slot="partners" title="Built by Growth Teams from" partners={partners} />
   </Hero>
 
   <FeaturesSection title="What We Do" features={features} />
